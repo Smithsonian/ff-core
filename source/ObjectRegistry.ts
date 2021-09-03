@@ -133,10 +133,11 @@ export default class ObjectRegistry<T extends object> extends Publisher
 
             if (typeName) {
                 event.type = typeName;
-                this.emit<IObjectEvent>(event);
 
                 const objects = this._objLists[typeName];
                 objects.splice(objects.indexOf(object), 1);
+
+                this.emit<IObjectEvent>(event);
             }
 
         } while (typeName !== rootTypeName);
